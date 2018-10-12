@@ -3,49 +3,35 @@
 # Contributor: Tobias Powalowski <tpowa@archlinux.org>
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
-pkgbase=linux-hardened
+pkgbase=linux-sltp
 _pkgver=4.18.13
-_hardenedver=a
-_srcname=linux-${_pkgver}
-pkgver=${_pkgver}.${_hardenedver}
+_srcname=linux-5ba666b650c8df55f398b0f306ba9420e53f0ba8
+pkgver=${_pkgver}
 pkgrel=1
-url='https://github.com/anthraxx/linux-hardened'
+url='https://github.com/angelsl/linux'
 arch=('x86_64')
 license=('GPL2')
-makedepends=('xmlto' 'kmod' 'inetutils' 'bc' 'libelf' 'python-sphinx' 'graphviz')
+makedepends=('xmlto' 'kmod' 'inetutils' 'bc' 'libelf')
 options=('!strip')
-source=(https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_pkgver}.tar.xz
-        https://www.kernel.org/pub/linux/kernel/v4.x/linux-${_pkgver}.tar.sign
-        https://github.com/anthraxx/${pkgbase}/releases/download/${pkgver}/${pkgbase}-${pkgver}.patch{,.sig}
+source=(linux.zip::https://github.com/angelsl/linux/archive/5ba666b650c8df55f398b0f306ba9420e53f0ba8.zip
         config.x86_64  # the main kernel config files
         60-linux.hook  # pacman hook for depmod
         90-linux.hook  # pacman hook for initramfs regeneration
         linux.preset   # standard config files for mkinitcpio ramdisk
 )
-replaces=('linux-grsec')
-sha256sums=('dc87a1c6b591cff9034197cdefafb74ee9e0a507fa1a0a1fde823fa99e389650'
-            'SKIP'
-            '6b07c62f13384a5e9eeb3cadd8a4c17c1e0fce21013ef1d8c73b7cc4a73fddd7'
-            'SKIP'
+sha256sums=('SKIP'
             '3cfb29354a2fe546308c60544d2b349dc28f9e4cbd3f0e2b109a89f0f6f5b333'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '75f99f5239e03238f88d1a834c50043ec32b1dc568f2cc291b07d04718483919'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
-validpgpkeys=(
-              'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
-              '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
-              '65EEFE022108E2B708CBFCF7F9E712E59AF5F22A' # Daniel Micay
-              'E240B57E2C4630BA768E2F26FC1B547C8D8172C8' # Levente Polyak
-             )
 
 _kernelname=${pkgbase#linux}
-: ${_kernelname:=-hardened}
+: ${_kernelname:=-sltp}
 
 prepare() {
   cd $_srcname
 
   msg2 "Setting version..."
-  sed -e "/^EXTRAVERSION =/s/=.*/= .${_hardenedver}/" -i Makefile
   scripts/setlocalversion --save-scmversion
   echo "-$pkgrel" > localversion.10-pkgrel
   echo "$_kernelname" > localversion.20-pkgname
@@ -69,7 +55,7 @@ prepare() {
 
 build() {
   cd $_srcname
-  make bzImage modules htmldocs
+  make bzImage modules
 }
 
 _package() {
@@ -208,38 +194,7 @@ _package-headers() {
   chmod -Rc u=rwX,go=rX "$pkgdir"
 }
 
-_package-docs() {
-  pkgdesc="Kernel hackers manual - HTML documentation that comes with the ${pkgbase/linux/Linux} kernel"
-
-  local builddir="$pkgdir/usr/lib/modules/$(<version)/build"
-
-  cd $_srcname
-
-  msg2 "Installing documentation..."
-  mkdir -p "$builddir"
-  cp -t "$builddir" -a Documentation
-
-  msg2 "Removing doctrees..."
-  rm -r "$builddir/Documentation/output/.doctrees"
-
-  msg2 "Moving HTML docs..."
-  local src dst
-  while read -rd '' src; do
-    dst="$builddir/Documentation/${src#$builddir/Documentation/output/}"
-    mkdir -p "${dst%/*}"
-    mv "$src" "$dst"
-    rmdir -p --ignore-fail-on-non-empty "${src%/*}"
-  done < <(find "$builddir/Documentation/output" -type f -print0)
-
-  msg2 "Adding symlink..."
-  mkdir -p "$pkgdir/usr/share/doc"
-  ln -sr "$builddir/Documentation" "$pkgdir/usr/share/doc/$pkgbase"
-
-  msg2 "Fixing permissions..."
-  chmod -Rc u=rwX,go=rX "$pkgdir"
-}
-
-pkgname=("$pkgbase" "$pkgbase-headers" "$pkgbase-docs")
+pkgname=("$pkgbase" "$pkgbase-headers")
 for _p in "${pkgname[@]}"; do
   eval "package_$_p() {
     $(declare -f "_package${_p#$pkgbase}")
