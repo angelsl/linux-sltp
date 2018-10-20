@@ -4,8 +4,9 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-sltp
-_pkgver=4.18.13
-_srcname=linux-5ba666b650c8df55f398b0f306ba9420e53f0ba8
+_pkgver=4.18.15
+_commithash=bec35bbce2dc4deaa8226aeb5049271b21bca640
+_srcname=linux-${_commithash}
 pkgver=${_pkgver}
 pkgrel=1
 url='https://github.com/angelsl/linux'
@@ -13,7 +14,7 @@ arch=('x86_64')
 license=('GPL2')
 makedepends=('xmlto' 'kmod' 'inetutils' 'bc' 'libelf')
 options=('!strip')
-source=(linux.zip::https://github.com/angelsl/linux/archive/5ba666b650c8df55f398b0f306ba9420e53f0ba8.zip
+source=(linux.zip::https://github.com/angelsl/linux/archive/${_commithash}.zip
         config.x86_64  # the main kernel config files
         60-linux.hook  # pacman hook for depmod
         90-linux.hook  # pacman hook for initramfs regeneration
