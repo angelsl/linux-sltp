@@ -5,7 +5,7 @@
 
 pkgbase=linux-sltp
 _pkgver=4.18.16
-_commithash=364803a91c82be8c5962c2f4bace84dfd490cccc
+_commithash=da50898b070d10911e2cbac7c84e6260f721f299
 _srcname=linux-${_commithash}
 pkgver=${_pkgver}
 pkgrel=1
