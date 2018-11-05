@@ -33,6 +33,7 @@ prepare() {
   cd $_srcname
 
   msg2 "Setting version..."
+  sed -i "s#/sbin/depmod#depmod#" Makefile
   scripts/setlocalversion --save-scmversion
   echo "-$pkgrel" > localversion.10-pkgrel
   echo "$_kernelname" > localversion.20-pkgname
