@@ -4,11 +4,11 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-sltp
-_pkgver=4.19.2
-_commithash=f8de9edc0f9c408d1438946e73965af78a1787fc
+_pkgver=4.19.3
+_commithash=84d186a41b5b865969cb89c354c16e21849b2a2a
 _srcname=linux-${_commithash}
 pkgver=${_pkgver}
-pkgrel=2
+pkgrel=1
 url='https://github.com/angelsl/linux'
 arch=('x86_64')
 license=('GPL2')
