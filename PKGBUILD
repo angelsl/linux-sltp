@@ -21,7 +21,7 @@ source=(linux.zip::https://github.com/angelsl/linux/archive/${_commithash}.zip
         linux.preset   # standard config files for mkinitcpio ramdisk
 )
 sha256sums=('SKIP'
-            '3cfb29354a2fe546308c60544d2b349dc28f9e4cbd3f0e2b109a89f0f6f5b333'
+            '752bc02f3124167fac8b9b97a3e46f197d0f860c20c421b5fba86db949e24e75'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '75f99f5239e03238f88d1a834c50043ec32b1dc568f2cc291b07d04718483919'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
