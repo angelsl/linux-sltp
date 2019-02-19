@@ -4,8 +4,8 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-sltp
-_pkgver=4.20.5
-_commithash=92f963bedd8d206db7afc701dc4f9714c8752a92
+_pkgver=4.20.10
+_commithash=ae30eaa2c2459d77ba4a42ef64161a0c95e2a03f
 _srcname=linux-${_commithash}
 pkgver=${_pkgver}
 pkgrel=1
@@ -21,7 +21,7 @@ source=(linux.zip::https://github.com/angelsl/linux/archive/${_commithash}.zip
         linux.preset   # standard config files for mkinitcpio ramdisk
 )
 sha256sums=('SKIP'
-            'd19015aad28e6452f2ec30c4bb66fe5348b26fd70047ed2094c4bdf78549fdab'
+            '768b0e588cbf83d3cc5a59f4b545022502a64414b20b32abacba5da3ba07f362'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '75f99f5239e03238f88d1a834c50043ec32b1dc568f2cc291b07d04718483919'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
