@@ -4,8 +4,8 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-sltp
-_pkgver=4.20.10
-_commithash=ae30eaa2c2459d77ba4a42ef64161a0c95e2a03f
+_pkgver=4.20.16
+_commithash=ae85e78760a2c8419c3922511eefe0e951b058ac
 _srcname=linux-${_commithash}
 pkgver=${_pkgver}
 pkgrel=1
