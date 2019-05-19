@@ -20,7 +20,7 @@ source=(config.x86_64  # the main kernel config files
         linux.preset   # standard config files for mkinitcpio ramdisk
         https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/kbl_dmc_ver1_04.bin
 )
-sha256sums=('1d778ade56cbc30f817ddcf83ebd029cb8bf8c52605526469f05ad09c278d4aa'
+sha256sums=('98d42f8b38119e56da0b8ee1c9f9f7fd07f46210ed9becb065ac25e0e171fec1'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '75f99f5239e03238f88d1a834c50043ec32b1dc568f2cc291b07d04718483919'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
