@@ -32,8 +32,7 @@ _kernelname=${pkgbase#linux}
 prepare() {
   mkdir -p $_srcname && cd $_srcname
   git init
-  git remote add origin https://github.com/angelsl/linux.git
-  git fetch --depth=1 origin $_commithash
+  git fetch --depth=1 https://github.com/angelsl/linux.git $_commithash
   git checkout -b master $_commithash
 
   mkdir -p firmware/i915
