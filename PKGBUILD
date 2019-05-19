@@ -13,6 +13,7 @@ url='https://github.com/angelsl/linux'
 arch=('x86_64')
 license=('GPL2')
 makedepends=('xmlto' 'kmod' 'inetutils' 'bc' 'libelf')
+provides=('WIREGUARD-MODULE' 'acpi_call')
 options=('!strip')
 source=(config.x86_64  # the main kernel config files
         60-linux.hook  # pacman hook for depmod
