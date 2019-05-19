@@ -8,7 +8,7 @@ _pkgver=5.0.17
 _commithash=ac2cb24b3adce6a89cca513162755e266e1c16be
 _srcname=$pkgbase
 pkgver=${_pkgver}
-pkgrel=2
+pkgrel=3
 url='https://github.com/angelsl/linux'
 arch=('x86_64')
 license=('GPL2')
@@ -34,6 +34,7 @@ prepare() {
   git init
   git fetch --depth=1 https://github.com/angelsl/linux.git $_commithash
   git checkout $_commithash
+  git clean -xfd
 
   mkdir -p firmware/i915
 
