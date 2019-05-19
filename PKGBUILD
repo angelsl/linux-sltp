@@ -4,33 +4,41 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-sltp
-_pkgver=5.0.6
-_commithash=4215fa4606628ddeb69599d7169866eaf6c2d94e
-_srcname=linux-${_commithash}
+_pkgver=5.0.17
+_commithash=ac2cb24b3adce6a89cca513162755e266e1c16be
+_srcname=$pkgbase
 pkgver=${_pkgver}
-pkgrel=1
+pkgrel=2
 url='https://github.com/angelsl/linux'
 arch=('x86_64')
 license=('GPL2')
 makedepends=('xmlto' 'kmod' 'inetutils' 'bc' 'libelf')
 options=('!strip')
-source=(linux.zip::https://github.com/angelsl/linux/archive/${_commithash}.zip
-        config.x86_64  # the main kernel config files
+source=(config.x86_64  # the main kernel config files
         60-linux.hook  # pacman hook for depmod
         90-linux.hook  # pacman hook for initramfs regeneration
         linux.preset   # standard config files for mkinitcpio ramdisk
+        https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/kbl_dmc_ver1_04.bin
 )
-sha256sums=('SKIP'
-            'ab3123a047f0669a91081a3e7b10e095f080731d5362717f7614596adb13b24c'
+sha256sums=('1d778ade56cbc30f817ddcf83ebd029cb8bf8c52605526469f05ad09c278d4aa'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '75f99f5239e03238f88d1a834c50043ec32b1dc568f2cc291b07d04718483919'
-            'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
+            'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
+            '2cde41c3e5ad181423bcc3e98ff9c49f743c88f18646af4d0b3c3a9664b831a1')
 
 _kernelname=${pkgbase#linux}
 : ${_kernelname:=-sltp}
 
 prepare() {
-  cd $_srcname
+  mkdir -p $_srcname && cd $_srcname
+  git init
+  git remote add origin https://github.com/angelsl/linux.git
+  git fetch --depth=1 origin $_commithash
+  git checkout -b master $_commithash
+
+  mkdir -p firmware/i915
+
+  cp "$srcdir/kbl_dmc_ver1_04.bin" firmware/i915/
 
   msg2 "Setting version..."
   sed -i "s#/sbin/depmod#depmod#" Makefile
@@ -49,7 +57,7 @@ prepare() {
 
   msg2 "Setting config..."
   cp ../config.x86_64 .config
-  make olddefconfig
+  make oldconfig
 
   make -s kernelrelease > ../version
   msg2 "Prepared %s version %s" "$pkgbase" "$(<../version)"
@@ -196,7 +204,7 @@ _package-headers() {
   chmod -Rc u=rwX,go=rX "$pkgdir"
 }
 
-pkgname=("$pkgbase" "$pkgbase-headers")
+pkgname=("$pkgbase") # "$pkgbase-headers")
 for _p in "${pkgname[@]}"; do
   eval "package_$_p() {
     $(declare -f "_package${_p#$pkgbase}")
