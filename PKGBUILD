@@ -33,7 +33,7 @@ prepare() {
   mkdir -p $_srcname && cd $_srcname
   git init
   git fetch --depth=1 https://github.com/angelsl/linux.git $_commithash
-  git checkout -b master $_commithash
+  git checkout $_commithash
 
   mkdir -p firmware/i915
 
