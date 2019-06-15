@@ -8,7 +8,7 @@ _pkgver=5.1.9
 _commithash=b28e44aef3fa038d5a790123bf0b1b8b551461f5
 _srcname=$pkgbase
 pkgver=${_pkgver}
-pkgrel=3
+pkgrel=1
 url='https://github.com/angelsl/linux'
 arch=('x86_64')
 license=('GPL2')
@@ -36,7 +36,7 @@ prepare() {
   git clean -xfd
 
   msg2 "Setting version..."
-  sed -i "s#/sbin/depmod#depmod#" Makefile
+  # sed -i "s#/sbin/depmod#depmod#" Makefile
   scripts/setlocalversion --save-scmversion
   echo "-$pkgrel" > localversion.10-pkgrel
   echo "$_kernelname" > localversion.20-pkgname
