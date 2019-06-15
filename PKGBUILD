@@ -4,8 +4,8 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-sltp
-_pkgver=5.0.17
-_commithash=ac2cb24b3adce6a89cca513162755e266e1c16be
+_pkgver=5.1.9
+_commithash=b28e44aef3fa038d5a790123bf0b1b8b551461f5
 _srcname=$pkgbase
 pkgver=${_pkgver}
 pkgrel=3
@@ -19,13 +19,11 @@ source=(config.x86_64  # the main kernel config files
         60-linux.hook  # pacman hook for depmod
         90-linux.hook  # pacman hook for initramfs regeneration
         linux.preset   # standard config files for mkinitcpio ramdisk
-        https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/kbl_dmc_ver1_04.bin
 )
-sha256sums=('98d42f8b38119e56da0b8ee1c9f9f7fd07f46210ed9becb065ac25e0e171fec1'
+sha256sums=('cf639dbd7985fb38fcb12a390ac998049fa836aa2f03d16186163e1982a61faf'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '75f99f5239e03238f88d1a834c50043ec32b1dc568f2cc291b07d04718483919'
-            'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
-            '2cde41c3e5ad181423bcc3e98ff9c49f743c88f18646af4d0b3c3a9664b831a1')
+            'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
 
 _kernelname=${pkgbase#linux}
 : ${_kernelname:=-sltp}
@@ -36,10 +34,6 @@ prepare() {
   git fetch --depth=1 https://github.com/angelsl/linux.git $_commithash
   git checkout $_commithash
   git clean -xfd
-
-  mkdir -p firmware/i915
-
-  cp "$srcdir/kbl_dmc_ver1_04.bin" firmware/i915/
 
   msg2 "Setting version..."
   sed -i "s#/sbin/depmod#depmod#" Makefile
