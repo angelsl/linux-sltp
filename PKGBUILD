@@ -4,8 +4,8 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-sltp
-_pkgver=5.1.16
-_commithash=7dcb4b8e95cf1758f31d804ad1a9d631ff47e30c
+_pkgver=5.2.8
+_commithash=a693486759325ef7981e6adcd92a75ad3bb76668
 _srcname=$pkgbase
 pkgver=${_pkgver}
 pkgrel=1
@@ -20,7 +20,7 @@ source=(config.x86_64  # the main kernel config files
         90-linux.hook  # pacman hook for initramfs regeneration
         linux.preset   # standard config files for mkinitcpio ramdisk
 )
-sha256sums=('3e6aa4787a71946b0faf9b293aff67b811f752beaf8cc2db30cde476e3ff76d2'
+sha256sums=('fe0bfb277ac1e9ff8527418208bd839f27483c8107463bdeb25690b5bea0065c'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '75f99f5239e03238f88d1a834c50043ec32b1dc568f2cc291b07d04718483919'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
