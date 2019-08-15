@@ -5,10 +5,10 @@
 
 pkgbase=linux-sltp
 _pkgver=5.2.8
-_commithash=a693486759325ef7981e6adcd92a75ad3bb76668
+_commithash=e20901d3e549a659404a82f0ac537e7bdddbcc81
 _srcname=$pkgbase
 pkgver=${_pkgver}
-pkgrel=1
+pkgrel=2
 url='https://github.com/angelsl/linux'
 arch=('x86_64')
 license=('GPL2')
