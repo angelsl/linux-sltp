@@ -4,11 +4,11 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-sltp
-_pkgver=5.2.8
-_commithash=e20901d3e549a659404a82f0ac537e7bdddbcc81
+_pkgver=5.2.9
+_commithash=9625efddfa890391dabe419a3f89a5ce4e79ef63
 _srcname=$pkgbase
 pkgver=${_pkgver}
-pkgrel=2
+pkgrel=1
 url='https://github.com/angelsl/linux'
 arch=('x86_64')
 license=('GPL2')
@@ -20,7 +20,7 @@ source=(config.x86_64  # the main kernel config files
         90-linux.hook  # pacman hook for initramfs regeneration
         linux.preset   # standard config files for mkinitcpio ramdisk
 )
-sha256sums=('fe0bfb277ac1e9ff8527418208bd839f27483c8107463bdeb25690b5bea0065c'
+sha256sums=('bb9089ee4cee6abdb8d61c2be7d089430b7794b75270e869ac7b564d4dc81d8c'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '75f99f5239e03238f88d1a834c50043ec32b1dc568f2cc291b07d04718483919'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
